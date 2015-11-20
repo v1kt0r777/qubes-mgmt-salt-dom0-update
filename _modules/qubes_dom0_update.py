@@ -64,8 +64,6 @@ def __virtual__():
     '''
     Confine this module to qubes and yum based systems
     '''
-    if __opts__.get('yum_provider') == 'yumpkg_api':
-        return False
     try:
         virtual_grain = __grains__['virtual'].lower()
         virtual_subtype = __grains__['virtual_subtype'].lower()

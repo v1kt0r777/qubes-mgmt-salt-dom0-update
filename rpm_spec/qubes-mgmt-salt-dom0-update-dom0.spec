@@ -50,6 +50,7 @@ qubesctl saltutil.sync_all refresh=true -l quiet --out quiet > /dev/null || true
 
 %files
 %defattr(-,root,root)
+%doc LICENSE README.rst
 %attr(750, root, root) %dir /srv/salt/_modules
 /srv/salt/_modules/qubes_dom0_update.py*
 

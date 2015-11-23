@@ -3,11 +3,11 @@
 package-name:       qubes-mgmt-salt-dom0-update
 name:               update-formula
 top_level_dir:      update
-formula-files:      README.rst LICENSE _modules
+formula-files:      _modules
 pillar-files:       
 test-formula-files: README.rst LICENSE tests
 test-pillar-files: 
-formula_root:       /srv/salt
+formula_dir:        /srv/salt
 saltenv:            base
 version:            3.0.0
 release:            1

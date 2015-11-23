@@ -1,9 +1,8 @@
 %{!?version: %define version %(cat version)}
-%{!?rel: %define rel %(cat rel)}
 
 Name:      qubes-mgmt-salt-dom0-update
 Version:   %{version}
-Release:   %{rel}%{?dist}
+Release:   1%{?dist}
 Summary:   Custom 'pkg' module that enables state files to install or update packages in dom0
 License:   GPL 2.0
 URL:	   http://www.qubes-os.org/

@@ -1297,6 +1297,10 @@ def install(name=None,
                 cmd.extend(args)
         if skip_verify:
             cmd.append('--nogpgcheck')
+        # QUBES-DOM0 self.refresh_db isn't enough
+        if salt.utils.is_true(refresh):
+            cmd.append('--clean')
+
 
     if targets:
         # QUBES-DOM0

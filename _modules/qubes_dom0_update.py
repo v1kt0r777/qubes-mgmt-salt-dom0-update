@@ -1297,9 +1297,13 @@ def install(name=None,
         )
 
     if downgrade:
-        cmd = [_yum(), '-y']
+        # QUBES-DOM0
+        #cmd = [_yum(), '-y']
+        cmd = ['qubes-dom0-update', '-y']
         _add_common_args(cmd)
-        cmd.append('downgrade')
+        # QUBES-DOM0
+        #cmd.append('downgrade')
+        cmd.append('--action=downgrade')
         cmd.extend(downgrade)
         __salt__['cmd.run_all'](
             cmd,
@@ -1309,9 +1313,13 @@ def install(name=None,
         )
 
     if to_reinstall:
-        cmd = [_yum(), '-y']
+        # QUBES-DOM0
+        #cmd = [_yum(), '-y']
+        cmd = ['qubes-dom0-update', '-y']
         _add_common_args(cmd)
-        cmd.append('reinstall')
+        # QUBES-DOM0
+        #cmd.append('reinstall')
+        cmd.append('--action=reinstall')
         cmd.extend(six.itervalues(to_reinstall))
         __salt__['cmd.run_all'](
             cmd,

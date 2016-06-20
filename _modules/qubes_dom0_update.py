@@ -879,6 +879,25 @@ def list_upgrades(refresh=True, **kwargs):
     repo_arg = _get_repo_options(**kwargs)
     exclude_arg = _get_excludes_option(**kwargs)
 
+    # QUBES-DOM0 download updates using qubes-dom0-update to populate
+    # repository metadata in dom0
+    cmd = ['qubes-dom0-update', '-y', '--downloadonly']
+    if _yum() == 'dnf':
+        cmd.extend(['--best', '--allowerasing'])
+    if salt.utils.is_true(refresh):
+        cmd.extend(['--refresh'])
+    cmd.extend(repo_arg)
+    cmd.extend(exclude_arg)
+    retcode = __salt__['cmd.retcode'](
+        cmd,
+        output_loglevel='trace',
+        python_shell=False,
+        redirect_stderr=True,
+        ignore_retcode=True,
+    )
+    if retcode not in [0, 100]:
+        raise CommandExecutionError('Failed to fetch updates')
+
     if salt.utils.is_true(refresh):
         refresh_db(**kwargs)
 

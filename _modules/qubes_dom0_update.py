@@ -34,6 +34,17 @@ from distutils.version import LooseVersion as _LooseVersion  # pylint: disable=n
 from salt.ext import six
 from salt.ext.six.moves import zip
 
+
+# make static analysis happy
+try: __grains__
+except NameError: __grains__ = {}
+try: __salt__
+except NameError: __salt__ = {}
+try: __context__
+except NameError: __context__ = {}
+try: __opts__
+except NameError: __opts__ = {}
+
 try:
     import yum
     HAS_YUM = True

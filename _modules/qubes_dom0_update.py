@@ -1768,13 +1768,17 @@ def upgrade(name=None,
     if salt.utils.systemd.has_scope(__context__) \
             and __salt__['config.get']('systemd.scope', True):
         cmd.extend(['systemd-run', '--scope'])
-    cmd.extend([_yum(), '--quiet', '-y'])
+    # QUBES-DOM0 use qubes-dom0-update
+    #cmd.extend([_yum(), '--quiet', '-y'])
+    cmd.extend(['qubes-dom0-update', '--quiet', '-y'])
     for args in (repo_arg, exclude_arg, branch_arg, extra_args):
         if args:
             cmd.extend(args)
     if skip_verify:
         cmd.append('--nogpgcheck')
-    cmd.append('upgrade')
+    # QUBES-DOM0 --action=upgrade
+    #cmd.append('upgrade')
+    cmd.append('--action=upgrade')
     cmd.extend(targets)
 
     result = __salt__['cmd.run_all'](cmd,

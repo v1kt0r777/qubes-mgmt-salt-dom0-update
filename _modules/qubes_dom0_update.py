@@ -1771,6 +1771,9 @@ def upgrade(name=None,
     # QUBES-DOM0 use qubes-dom0-update
     #cmd.extend([_yum(), '--quiet', '-y'])
     cmd.extend(['qubes-dom0-update', '--quiet', '-y'])
+    # QUBES-DOM0 add --clean
+    if salt.utils.is_true(refresh):
+        cmd.append('--clean')
     for args in (repo_arg, exclude_arg, branch_arg, extra_args):
         if args:
             cmd.extend(args)

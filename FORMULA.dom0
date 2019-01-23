@@ -6,16 +6,12 @@ version:            4.0.4
 release:            1
 name:               update-formula
 top_level_dir:      update
-formula-files:      _modules
+formula-files:      update
 test-formula-files: README.rst LICENSE tests
-formula_dir:        $(MGMT_DEFAULT_STATE_DIR)
+formula_dir:        $(MGMT_DEFAULT_FORMULA_DIR)/$(MGMT_SALTENV)/$(MGMT_NAME)
 os:                 Qubes
 os_family:          RedHat
 summary:            Custom 'pkg' module that enables state files to install or update packages in dom0
 description: |
-  Custom 'pkg' module that enables state files to install or update packages in dom0
-
-state-tops:
-  tests:
-    disable:
-      - update.tests
+  Custom 'pkg' module that enables state files to install or update packages in dom0.
+  Also update-formula with actual states to that update qubes.

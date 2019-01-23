@@ -21,3 +21,11 @@ include Makefile.vars
 
 # This file is copied in from mgmt-salt
 include Makefile.install
+
+.PHONY: install-custom
+install-custom::
+	# Install /srv/salt/_modules
+	mkdir -p $(DESTDIR)/srv/salt/_modules
+	cp -Tr _modules $(DESTDIR)/srv/salt/_modules
+	# Install /etc/salt/* and /srv/*
+	cp -Tr etc $(DESTDIR)/etc

@@ -39,11 +39,16 @@ qubesctl saltutil.sync_all refresh=true -l quiet --out quiet > /dev/null || true
 %attr(750, root, root) %dir /srv/salt/_modules
 /srv/salt/_modules/qubes_dom0_update.py*
 
+%attr(750, root, root) %dir /srv/formulas/base/update-formula
+/srv/formulas/base/update-formula/update/vm.sls
+
 %attr(750, root, root) %dir /srv/formulas/test/update-formula
 /srv/formulas/test/update-formula/LICENSE
 /srv/formulas/test/update-formula/README.rst
 /srv/formulas/test/update-formula/update/tests.sls
 /srv/formulas/test/update-formula/update/tests.top
+
+%config(noreplace) /etc/salt/minion.d/formula-update.conf
 
 %changelog
 @CHANGELOG@

@@ -7,6 +7,11 @@ dsa-4371-update:
     - stateful: True
 {% endif %}
 
+{% if grains['os'] == 'Fedora' %}
+# workaround for https://bugzilla.redhat.com/1669247
+dnf list updates --refresh >/dev/null:
+  cmd.run
+{% endif %}
 
 update:
   pkg.uptodate:

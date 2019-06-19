@@ -980,8 +980,7 @@ def list_upgrades(refresh=True, **kwargs):
         cmd.extend(['--best', '--allowerasing'])
     if salt.utils.data.is_true(refresh):
         cmd.extend(['--refresh'])
-    cmd.extend(repo_arg)
-    cmd.extend(exclude_arg)
+    cmd.extend(options)
     retcode = __salt__['cmd.retcode'](
         cmd,
         output_loglevel='trace',

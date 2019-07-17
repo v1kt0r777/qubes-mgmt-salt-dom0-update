@@ -7,6 +7,14 @@ dsa-4371-update:
     - stateful: True
 {% endif %}
 
+{% if grains['oscodename'] == 'buster' %}
+# https://bugs.debian.org/931566
+apt-get update --allow-releaseinfo-change:
+  cmd.run:
+    - onlyif:
+      - 'grep -q "^Suite: testing" /var/lib/apt/lists/*buster*Release'
+{% endif %}
+
 {% if grains['oscodename'] == 'stretch' %}
 # remove jessie-backports erroneously added to stretch template
 /etc/apt/sources.list:
